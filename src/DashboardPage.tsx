@@ -1,15 +1,22 @@
 import styles from "./DashboardPage.module.css";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Navbar } from "./Navbar";
 import { all_notes } from "./Note";
+import { useSession } from "./supabase";
 
 export function DashboardPage() {
+  const navigate = useNavigate();
+  const session = useSession();
   return (
     <>
       <Navbar title="Home">
-        <Link to="/new">
-          <button>Create</button>
-        </Link>
+        <button
+          onClick={() => navigate("/new")}
+          disabled={!session}
+          data-tooltip={session ? null : "Not signed in"}
+        >
+          Create
+        </button>
       </Navbar>
       <div className={styles.page}>
         {all_notes.map((note) => (

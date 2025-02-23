@@ -1,6 +1,12 @@
 :root {
   -webkit-tap-highlight-color: transparent;
   font-family: system-ui, Helvetica, sans-serif;
+  color: #000;
+  background: #fff;
+  @media (prefers-color-scheme: dark) {
+    color: #fff;
+    background: #000;
+  }
 }
 
 body {

@@ -2,20 +2,23 @@
   padding: 16px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 16px;
+  grid-gap: 8px;
 }
 
 .card {
   border-radius: 8px;
-  color: #000;
+  color: inherit;
   border: 1px solid #8888;
   box-shadow: 0 2px 8px #4444;
   text-decoration: none;
-  transition: transform 200ms;
   font-family: monospace;
   overflow: hidden;
+  transition:
+    transform 200ms,
+    box-shadow 200ms;
   &:hover {
     transform: translateY(-4px);
+    box-shadow: 0 6px 16px #4444;
   }
 }
 

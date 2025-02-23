@@ -2,6 +2,10 @@
   padding: 0 16px;
 }
 
+.empty {
+  padding: 0 16px;
+}
+
 .page {
   flex: 1;
   display: flex;
@@ -42,6 +46,6 @@
 .cardBody {
   padding: 8px;
   font-size: 12px;
-  white-space: pre;
+  white-space: pre-wrap;
   max-height: 7em;
 }

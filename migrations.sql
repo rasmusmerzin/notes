@@ -32,7 +32,7 @@ create policy "Users can insert notes." on notes.notes for
 insert to authenticated with check ((select auth.uid()) = "user");
 
 create policy "Users can view their notes." on notes.notes for
-select to authenticated using ((select auth.uid()) = "user");
+select to authenticated using ((select auth.uid()) = "user" or "public");
 
 create policy "Users can update their notes." on notes.notes for
 update to authenticated using ((select auth.uid()) = "user");

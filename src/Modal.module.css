@@ -1,0 +1,36 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #0008;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  animation: fade-in 200ms;
+}
+
+.content {
+  width: 400px;
+  max-width: calc(100% - 32px);
+  padding: 24px 16px;
+  border-radius: 16px;
+  background: var(--modal-background);
+  box-sizing: border-box;
+  box-shadow: 0 0 16px #8884;
+  animation: zoom-in 200ms;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0);
+  }
+}

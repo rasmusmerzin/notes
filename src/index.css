@@ -1,11 +1,15 @@
 :root {
+  --background: #fff;
+  --foreground: #000;
+  --modal-background: var(--background);
   -webkit-tap-highlight-color: transparent;
   font-family: system-ui, Helvetica, sans-serif;
-  color: #000;
-  background: #fff;
+  color: var(--foreground);
+  background: var(--background);
   @media (prefers-color-scheme: dark) {
-    color: #fff;
-    background: #000;
+    --background: #000;
+    --foreground: #fff;
+    --modal-background: #222;
   }
 }
 

@@ -4,11 +4,12 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { supabase, useSession } from "./supabase";
 import { Spinner } from "./Spinner";
+import { Dialogue } from "./Dialogue";
 
 export function NotePage() {
   const { noteId } = useParams();
   const [note, setNote] = useState<Note | null | undefined>();
-  const [loading, setLoading] = useState(true);
+  const [deleteDialogue, setDeleteDialogue] = useState(false);
   const session = useSession();
   const amowner = !!session && note?.user === session?.user.id;
   useEffect(() => {
@@ -19,7 +20,6 @@ export function NotePage() {
       .eq("id", noteId)
       .single()
       .then(({ data, error }) => {
-        setLoading(false);
         if (error) return alert(error.message);
         setNote(data);
       });
@@ -30,22 +30,7 @@ export function NotePage() {
         <button onClick={() => history.back()}>arrow_back</button>
         {amowner && (
           <div>
-            <button
-              disabled={loading}
-              onClick={async () => {
-                setLoading(true);
-                const { error } = await supabase
-                  .schema("notes")
-                  .from("notes")
-                  .delete()
-                  .eq("id", noteId);
-                setLoading(false);
-                if (error) return alert(error.message);
-                history.back();
-              }}
-            >
-              delete
-            </button>
+            <button onClick={() => setDeleteDialogue(true)}>delete</button>
           </div>
         )}
       </div>
@@ -61,6 +46,23 @@ export function NotePage() {
           <Spinner />
         )}
       </div>
+      {deleteDialogue && (
+        <Dialogue
+          title="Delete Note"
+          body="Are you sure you want to delete this note?"
+          cancelAction={() => setDeleteDialogue(false)}
+          confirmText="Delete"
+          confirmAction={async () => {
+            const { error } = await supabase
+              .schema("notes")
+              .from("notes")
+              .delete()
+              .eq("id", noteId);
+            if (error) return alert(error.message);
+            history.back();
+          }}
+        />
+      )}
     </>
   );
 }

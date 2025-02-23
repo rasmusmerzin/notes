@@ -2,8 +2,7 @@
   position: sticky;
   bottom: 0;
   width: 100vw;
-  background: #fff;
-  color: #000;
+  background: var(--background);
   height: 80px;
   padding: 12px;
   grid-gap: 12px;
@@ -11,9 +10,6 @@
   box-shadow: 0 0 16px #8884;
   display: flex;
   justify-content: center;
-  @media (prefers-color-scheme: dark) {
-    filter: invert(1);
-  }
   a {
     user-select: none;
     display: block;
@@ -27,7 +23,7 @@
     border-radius: 16px;
     line-height: 1;
     text-decoration: none;
-    color: #000;
+    color: inherit;
     opacity: 0.7;
   }
 }
@@ -38,7 +34,7 @@
 }
 
 .active {
-  background: #8884;
+  background: #bbb8;
   font-weight: bold;
   opacity: 1 !important;
 }

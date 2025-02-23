@@ -25,11 +25,14 @@ create index if not exists notes_notes_created on notes.notes ("created");
 
 alter table notes.notes enable row level security;
 
+create policy "Users can view public notes." on notes.notes for
+select to anon using ("public");
+
 create policy "Users can insert notes." on notes.notes for
 insert to authenticated with check ((select auth.uid()) = "user");
 
-create policy "Users can view public notes and their notes." on notes.notes for
-select to authenticated using ((select auth.uid()) = "user" or "public");
+create policy "Users can view their notes." on notes.notes for
+select to authenticated using ((select auth.uid()) = "user");
 
 create policy "Users can update their notes." on notes.notes for
 update to authenticated using ((select auth.uid()) = "user");

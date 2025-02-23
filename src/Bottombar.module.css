@@ -1,0 +1,41 @@
+.bottombar {
+  position: sticky;
+  bottom: 0;
+  width: 100vw;
+  background: #fff;
+  color: #000;
+  height: 72px;
+  padding: 16px;
+  grid-gap: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px #4444;
+  border-top: 1px solid #8888;
+  display: flex;
+  justify-content: center;
+  @media (prefers-color-scheme: dark) {
+    filter: invert(1);
+  }
+  a {
+    user-select: none;
+    display: block;
+    font-family: Symbol;
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    line-height: 1;
+    text-decoration: none;
+    color: #000;
+    opacity: 0.7;
+  }
+}
+
+.disabled {
+  opacity: 0.15 !important;
+  pointer-events: none;
+}
+
+.active {
+  font-weight: bold;
+  opacity: 1 !important;
+}

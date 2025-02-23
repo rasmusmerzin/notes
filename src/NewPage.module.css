@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   padding: 16px;
+  grid-gap: 16px;
 }
 
 .card {
@@ -21,7 +22,7 @@
     padding: 12px;
     border: 1px solid #8888;
     font-family: monospace;
-    font-size: 16px;
+    font-size: 14px;
   }
   input {
     border-bottom: none;
@@ -33,5 +34,31 @@
     resize: none;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+  }
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  width: 800px;
+  max-width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+  padding: 16px;
+  grid-gap: 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  button {
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 16px;
+    background: #000;
+    color: #fff;
+    @media (prefers-color-scheme: dark) {
+      filter: invert(1);
+    }
   }
 }

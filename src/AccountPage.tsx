@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./AccountPage.module.css";
-import { Navbar } from "./Navbar";
 import { mountAuthIframe } from "./auth";
+import { Bottombar } from "./Bottombar";
 
 export function AccountPage() {
   const container = useRef<HTMLDivElement>(null);
@@ -11,8 +11,8 @@ export function AccountPage() {
   }, [container.current]);
   return (
     <>
-      <Navbar title="Account" />
       <div ref={container} className={styles.container}></div>
+      <Bottombar />
     </>
   );
 }

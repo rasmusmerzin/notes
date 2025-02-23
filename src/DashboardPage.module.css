@@ -1,0 +1,31 @@
+.page {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 16px;
+}
+
+.card {
+  border-radius: 8px;
+  color: #000;
+  border: 1px solid #8888;
+  box-shadow: 0 2px 8px #4444;
+  text-decoration: none;
+  transition: transform 200ms;
+  font-family: monospace;
+  overflow: hidden;
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.cardTitle {
+  padding: 8px;
+  font-weight: bold;
+  border-bottom: 1px solid #8888;
+}
+
+.cardBody {
+  padding: 8px;
+  max-height: calc(4em + 8px);
+}

@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router";
 import { DashboardPage } from "./DashboardPage.tsx";
 import { NewPage } from "./NewPage.tsx";
+import "./tooltip";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>

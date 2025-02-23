@@ -1,9 +1,25 @@
 import styles from "./HomePage.module.css";
-import { Link } from "react-router";
-import { notes } from "./Note";
 import { Bottombar } from "./Bottombar";
+import { Link } from "react-router";
+import { Note } from "./Note";
+import { supabase, useSession } from "./supabase";
+import { useEffect, useState } from "react";
 
 export function MinePage() {
+  const [notes, setNotes] = useState<Note[]>([]);
+  const session = useSession();
+  useEffect(() => {
+    supabase
+      .schema("notes")
+      .from("notes")
+      .select()
+      .eq("user", session?.user.id)
+      .order("created", { ascending: false })
+      .then(({ data, error }) => {
+        if (error) return alert(error.message);
+        if (data) setNotes(data);
+      });
+  }, []);
   return (
     <>
       <div className={styles.page}>

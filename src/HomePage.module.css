@@ -40,5 +40,6 @@
 .cardBody {
   padding: 8px;
   font-size: 12px;
-  max-height: calc(4em + 8px);
+  white-space: pre;
+  max-height: 7em;
 }

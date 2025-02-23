@@ -13,7 +13,8 @@
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 2px 8px #4444;
-  div {
+  div,
+  pre {
     color: inherit;
     background: inherit;
     padding: 12px;
@@ -21,13 +22,14 @@
     font-family: monospace;
     font-size: 14px;
   }
-  div:first-child {
+  div {
     font-weight: bold;
     border-bottom: none;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
   }
-  div:last-child {
+  pre {
+    margin: 0;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     font-size: 12px;

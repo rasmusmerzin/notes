@@ -11,7 +11,7 @@ alter default privileges for role postgres
 in schema "notes" grant all on sequences to anon, authenticated, service_role;
 
 create table if not exists notes.notes (
-  "id" char(24) primary key,
+  "id" uuid primary key default gen_random_uuid(),
   "user" uuid not null references auth.users,
   "created" timestamptz not null default now(),
   "title" varchar(255) not null,

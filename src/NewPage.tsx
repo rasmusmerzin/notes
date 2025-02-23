@@ -1,15 +1,37 @@
 import styles from "./NewPage.module.css";
 import { useState } from "react";
 import { Bottombar } from "./Bottombar";
+import { supabase, useSession } from "./supabase";
+import { useNavigate } from "react-router";
 
 export function NewPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const session = useSession();
+  const navigate = useNavigate();
   return (
     <>
       <div className={styles.topbar}>
         <h2>New Note</h2>
-        <button>Publish</button>
+        <button
+          disabled={disabled}
+          onClick={async () => {
+            setDisabled(true);
+            const { data, error } = await supabase
+              .schema("notes")
+              .from("notes")
+              .insert({ title, content, user: session?.user.id, public: true })
+              .select()
+              .single();
+            setDisabled(false);
+            console.log({ data });
+            if (error) return alert(error.message);
+            navigate(`/note/${(data as any).id}`, { replace: true });
+          }}
+        >
+          Publish
+        </button>
       </div>
       <div className={styles.page}>
         <div className={styles.card}>

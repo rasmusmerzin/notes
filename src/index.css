@@ -1,0 +1,21 @@
+:root {
+  -webkit-tap-highlight-color: transparent;
+  font-family: system-ui, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+}

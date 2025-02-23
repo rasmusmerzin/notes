@@ -36,3 +36,6 @@ select to authenticated using ((select auth.uid()) = "user");
 
 create policy "Users can update their notes." on notes.notes for
 update to authenticated using ((select auth.uid()) = "user");
+
+create policy "Users can delete their notes." on notes.notes for
+delete to authenticated using ((select auth.uid()) = "user");

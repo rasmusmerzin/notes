@@ -4,12 +4,13 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import { supabase, useSession } from "./supabase";
 import { Spinner } from "./Spinner";
-import { safeback } from "./safeback";
 
 export function NotePage() {
   const { noteId } = useParams();
   const [note, setNote] = useState<Note | null | undefined>();
+  const [loading, setLoading] = useState(true);
   const session = useSession();
+  const amowner = !!session && note?.user === session?.user.id;
   useEffect(() => {
     supabase
       .schema("notes")
@@ -18,24 +19,35 @@ export function NotePage() {
       .eq("id", noteId)
       .single()
       .then(({ data, error }) => {
+        setLoading(false);
         if (error) return alert(error.message);
         setNote(data);
       });
-  }, [noteId]);
+  }, [noteId, session]);
   return (
     <>
       <div className={styles.topbar}>
-        <a
-          href="/"
-          className={styles.symbol}
-          onClick={(event) => {
-            event.preventDefault();
-            safeback();
-          }}
-        >
-          arrow_back
-        </a>
-        {note?.user && note.user === session?.user.id && <button>Edit</button>}
+        <button onClick={() => history.back()}>arrow_back</button>
+        {amowner && (
+          <div>
+            <button
+              disabled={loading}
+              onClick={async () => {
+                setLoading(true);
+                const { error } = await supabase
+                  .schema("notes")
+                  .from("notes")
+                  .delete()
+                  .eq("id", noteId);
+                setLoading(false);
+                if (error) return alert(error.message);
+                history.back();
+              }}
+            >
+              delete
+            </button>
+          </div>
+        )}
       </div>
       <div className={styles.page}>
         {note ? (

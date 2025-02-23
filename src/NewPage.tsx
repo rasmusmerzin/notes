@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 export function NewPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [disabled, setDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
   const session = useSession();
   const navigate = useNavigate();
   return (
@@ -15,16 +15,16 @@ export function NewPage() {
       <div className={styles.topbar}>
         <h2>New Note</h2>
         <button
-          disabled={disabled}
+          disabled={loading}
           onClick={async () => {
-            setDisabled(true);
+            setLoading(true);
             const { data, error } = await supabase
               .schema("notes")
               .from("notes")
               .insert({ title, content, user: session?.user.id, public: true })
               .select()
               .single();
-            setDisabled(false);
+            setLoading(false);
             console.log({ data });
             if (error) return alert(error.message);
             navigate(`/note/${(data as any).id}`, { replace: true });

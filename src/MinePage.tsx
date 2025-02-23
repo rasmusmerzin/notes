@@ -11,6 +11,7 @@ export function MinePage() {
   const [notes, setNotes] = useState<Note[]>([]);
   const session = useSession();
   useEffect(() => {
+    if (!session) return;
     supabase
       .schema("notes")
       .from("notes")
@@ -22,7 +23,7 @@ export function MinePage() {
         if (error) return alert(error.message);
         if (data) setNotes(data);
       });
-  }, []);
+  }, [session]);
   return (
     <>
       <div className={styles.page}>

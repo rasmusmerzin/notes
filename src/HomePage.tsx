@@ -4,8 +4,10 @@ import { Link } from "react-router";
 import { Note } from "./Note";
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
+import { Spinner } from "./Spinner";
 
 export function HomePage() {
+  const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState<Note[]>([]);
   useEffect(() => {
     supabase
@@ -15,6 +17,7 @@ export function HomePage() {
       .eq("public", true)
       .order("created", { ascending: false })
       .then(({ data, error }) => {
+        setLoading(false);
         if (error) return alert(error.message);
         if (data) setNotes(data);
       });
@@ -23,6 +26,7 @@ export function HomePage() {
     <>
       <div className={styles.page}>
         <h1 className={styles.title}>Home</h1>
+        {loading && <Spinner />}
         <div className={styles.grid}>
           {notes.map((note) => (
             <Link to={`/note/${note.id}`} key={note.id} className={styles.card}>

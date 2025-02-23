@@ -4,8 +4,10 @@ import { Link } from "react-router";
 import { Note } from "./Note";
 import { supabase, useSession } from "./supabase";
 import { useEffect, useState } from "react";
+import { Spinner } from "./Spinner";
 
 export function MinePage() {
+  const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState<Note[]>([]);
   const session = useSession();
   useEffect(() => {
@@ -16,6 +18,7 @@ export function MinePage() {
       .eq("user", session?.user.id)
       .order("created", { ascending: false })
       .then(({ data, error }) => {
+        setLoading(false);
         if (error) return alert(error.message);
         if (data) setNotes(data);
       });
@@ -24,6 +27,7 @@ export function MinePage() {
     <>
       <div className={styles.page}>
         <h1 className={styles.title}>My Notes</h1>
+        {loading && <Spinner />}
         <div className={styles.grid}>
           {notes.map((note) => (
             <Link to={`/note/${note.id}`} key={note.id} className={styles.card}>

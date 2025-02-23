@@ -1,0 +1,6 @@
+.spinner {
+  margin: 32px auto;
+  @media (prefers-color-scheme: dark) {
+    filter: invert(1);
+  }
+}

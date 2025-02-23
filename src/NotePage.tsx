@@ -2,11 +2,14 @@ import styles from "./NotePage.module.css";
 import { Note } from "./Note";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { supabase } from "./supabase";
+import { supabase, useSession } from "./supabase";
+import { Spinner } from "./Spinner";
+import { safeback } from "./safeback";
 
 export function NotePage() {
   const { noteId } = useParams();
   const [note, setNote] = useState<Note | null | undefined>();
+  const session = useSession();
   useEffect(() => {
     supabase
       .schema("notes")
@@ -27,11 +30,12 @@ export function NotePage() {
           className={styles.symbol}
           onClick={(event) => {
             event.preventDefault();
-            history.back();
+            safeback();
           }}
         >
           arrow_back
         </a>
+        {note?.user && note.user === session?.user.id && <button>Edit</button>}
       </div>
       <div className={styles.page}>
         {note ? (
@@ -41,7 +45,9 @@ export function NotePage() {
           </div>
         ) : note === null ? (
           <div>Not Found</div>
-        ) : null}
+        ) : (
+          <Spinner />
+        )}
       </div>
     </>
   );

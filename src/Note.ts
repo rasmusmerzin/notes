@@ -43,5 +43,5 @@ export const all_notes = [
   ...notes,
 ].map((note, index) => ({
   ...note,
-  id: index.toString(),
+  id: (index + 1).toString(),
 }));

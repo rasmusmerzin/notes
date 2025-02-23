@@ -32,11 +32,13 @@
 
 .cardTitle {
   padding: 8px;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 14px;
   border-bottom: 1px solid #8888;
 }
 
 .cardBody {
   padding: 8px;
+  font-size: 12px;
   max-height: calc(4em + 8px);
 }

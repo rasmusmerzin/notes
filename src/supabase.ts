@@ -10,7 +10,7 @@ export const supabase = createClient(
 
 export const useSession = create<Session | null>((set) => {
   supabase.auth.onAuthStateChange((_event, session) => set(session));
-  return null;
+  return loadSession();
 });
 
 export async function setSession(value: Session | null) {

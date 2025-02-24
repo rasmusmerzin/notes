@@ -26,10 +26,12 @@ export function HomePage() {
     <>
       <div className={styles.page}>
         <h1 className={styles.title}>Home</h1>
-        {loading && <Spinner />}
-        {!notes.length && !loading && (
-          <div className={styles.empty}>No notes yet</div>
+        {loading && (
+          <center style={{ margin: "96px 0" }}>
+            <Spinner />
+          </center>
         )}
+        {!notes.length && !loading && <div>No notes yet</div>}
         <div className={styles.grid}>
           {notes.map((note) => (
             <Link to={`/note/${note.id}`} key={note.id} className={styles.card}>

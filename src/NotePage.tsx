@@ -23,18 +23,18 @@ export function NotePage() {
         if (error) return alert(error.message);
         setNote(data);
       });
-  }, [noteId, session]);
+  }, [noteId, session?.user.id]);
   return (
     <>
-      <div className={styles.topbar}>
-        <button onClick={() => history.back()}>arrow_back</button>
-        {amowner && (
-          <div>
-            <button onClick={() => setDeleteDialogue(true)}>delete</button>
-          </div>
-        )}
-      </div>
       <div className={styles.page}>
+        <div className={styles.topbar}>
+          <button onClick={() => history.back()}>arrow_back</button>
+          {amowner && (
+            <div>
+              <button onClick={() => setDeleteDialogue(true)}>delete</button>
+            </div>
+          )}
+        </div>
         {note ? (
           <div className={styles.card}>
             <div>{note.title}</div>

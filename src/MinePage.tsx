@@ -23,15 +23,17 @@ export function MinePage() {
         if (error) return alert(error.message);
         if (data) setNotes(data);
       });
-  }, [session]);
+  }, [session?.user.id]);
   return (
     <>
       <div className={styles.page}>
         <h1 className={styles.title}>My Notes</h1>
-        {loading && <Spinner />}
-        {!notes.length && !loading && (
-          <div className={styles.empty}>No notes yet</div>
+        {loading && (
+          <center style={{ margin: "96px 0" }}>
+            <Spinner />
+          </center>
         )}
+        {!notes.length && !loading && <div>No notes yet</div>}
         <div className={styles.grid}>
           {notes.map((note) => (
             <Link to={`/note/${note.id}`} key={note.id} className={styles.card}>

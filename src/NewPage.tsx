@@ -12,28 +12,33 @@ export function NewPage() {
   const navigate = useNavigate();
   return (
     <>
-      <div className={styles.topbar}>
-        <h2>New Note</h2>
-        <button
-          disabled={loading}
-          onClick={async () => {
-            setLoading(true);
-            const { data, error } = await supabase
-              .schema("notes")
-              .from("notes")
-              .insert({ title, content, user: session?.user.id, public: true })
-              .select()
-              .single();
-            setLoading(false);
-            console.log({ data });
-            if (error) return alert(error.message);
-            navigate(`/note/${(data as any).id}`, { replace: true });
-          }}
-        >
-          Publish
-        </button>
-      </div>
       <div className={styles.page}>
+        <div className={styles.topbar}>
+          <h2>New Note</h2>
+          <button
+            disabled={loading}
+            onClick={async () => {
+              setLoading(true);
+              const { data, error } = await supabase
+                .schema("notes")
+                .from("notes")
+                .insert({
+                  title,
+                  content,
+                  user: session?.user.id,
+                  public: true,
+                })
+                .select()
+                .single();
+              setLoading(false);
+              console.log({ data });
+              if (error) return alert(error.message);
+              navigate(`/note/${(data as any).id}`, { replace: true });
+            }}
+          >
+            Publish
+          </button>
+        </div>
         <div className={styles.card}>
           <input
             spellCheck={false}

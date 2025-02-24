@@ -4,6 +4,7 @@
   --modal-background: var(--background);
   -webkit-tap-highlight-color: transparent;
   font-family: system-ui, Helvetica, sans-serif;
+  color-scheme: light dark;
   color: var(--foreground);
   background: var(--background);
   @media (prefers-color-scheme: dark) {

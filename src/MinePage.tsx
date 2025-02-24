@@ -1,5 +1,4 @@
 import styles from "./HomePage.module.css";
-import { Bottombar } from "./Bottombar";
 import { Link } from "react-router";
 import { Note } from "./Note";
 import { supabase, useSession } from "./supabase";
@@ -43,7 +42,6 @@ export function MinePage() {
           ))}
         </div>
       </div>
-      <Bottombar />
     </>
   );
 }

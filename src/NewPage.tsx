@@ -1,6 +1,5 @@
 import styles from "./NewPage.module.css";
 import { useState } from "react";
-import { Bottombar } from "./Bottombar";
 import { supabase, useSession } from "./supabase";
 import { useNavigate } from "react-router";
 
@@ -54,7 +53,6 @@ export function NewPage() {
           ></textarea>
         </div>
       </div>
-      <Bottombar />
     </>
   );
 }

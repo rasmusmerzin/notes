@@ -1,5 +1,4 @@
 import styles from "./HomePage.module.css";
-import { Bottombar } from "./Bottombar";
 import { Link } from "react-router";
 import { Note } from "./Note";
 import { useEffect, useState } from "react";
@@ -41,7 +40,6 @@ export function HomePage() {
           ))}
         </div>
       </div>
-      <Bottombar />
     </>
   );
 }

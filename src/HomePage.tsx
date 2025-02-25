@@ -11,7 +11,7 @@ export function HomePage() {
   useEffect(() => {
     supabase
       .schema("notes")
-      .from("notes")
+      .from("notes_view")
       .select()
       .eq("public", true)
       .order("created", { ascending: false })
@@ -34,7 +34,11 @@ export function HomePage() {
         <div className={styles.grid}>
           {notes.map((note) => (
             <Link to={`/note/${note.id}`} key={note.id} className={styles.card}>
-              <div className={styles.cardTitle}>{note.title}</div>
+              <div className={styles.cardTitle}>
+                <span>{note.email}</span>
+                <span>/</span>
+                <b>{note.title}</b>
+              </div>
               <div className={styles.cardBody}>{note.content}</div>
             </Link>
           ))}

@@ -39,3 +39,7 @@ update to authenticated using ((select auth.uid()) = "user");
 
 create policy "Users can delete their notes." on notes.notes for
 delete to authenticated using ((select auth.uid()) = "user");
+
+create or replace view notes.notes_view as
+select notes.notes.*, auth.users."email"
+from notes.notes join auth.users on notes.notes."user" = auth.users."id";

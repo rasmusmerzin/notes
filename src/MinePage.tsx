@@ -36,7 +36,9 @@ export function MinePage() {
         <div className={styles.grid}>
           {notes.map((note) => (
             <Link to={`/note/${note.id}`} key={note.id} className={styles.card}>
-              <div className={styles.cardTitle}>{note.title}</div>
+              <div className={styles.cardTitle}>
+                <b>{note.title}</b>
+              </div>
               <div className={styles.cardBody}>{note.content}</div>
             </Link>
           ))}

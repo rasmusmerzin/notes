@@ -15,7 +15,7 @@ export function NotePage() {
   useEffect(() => {
     supabase
       .schema("notes")
-      .from("notes")
+      .from("notes_view")
       .select()
       .eq("id", noteId)
       .single()
@@ -37,7 +37,11 @@ export function NotePage() {
         </div>
         {note ? (
           <div className={styles.card}>
-            <div>{note.title}</div>
+            <div>
+              <span>{note.email}</span>
+              <span>/</span>
+              <b>{note.title}</b>
+            </div>
             <pre>{note.content}</pre>
           </div>
         ) : note === null ? (
